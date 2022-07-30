@@ -5,4 +5,6 @@ body{
 header{
   height: 10%;
 }
-.card
+.card{
+  width: 18rem;
+}

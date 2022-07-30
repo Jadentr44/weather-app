@@ -20,8 +20,8 @@ fetch(geoSearchAPI)
   .then(data=>{
     console.log(data)
     displayInfo(data)
-  }).catch(function(){
-    console.log("err")
+  }).catch(function(error){
+    console.log(error)
   })
 }).catch(function() {
   console.log("error");
@@ -40,9 +40,15 @@ function displayInfo(data){
   $('#humidity').text(`humidity${data.current.humidity}`)
 
   let fiveDay = [data.daily[0],data.daily[1],data.daily[2],data.daily[3],data.daily[4]]
-
+  console.log(fiveDay)
   fiveDay.forEach(e=>{
-    let container = $('div')
-    container.addClass('card col-2')
+    let card = $('<div>')
+    card.addClass('card col-2')
+
+    let cardBody = $('<div>')
+    cardBody.addClass('card-body')
+
+    card.append(cardBody)
+    $('.card-deck').append(card)
   })
 }
