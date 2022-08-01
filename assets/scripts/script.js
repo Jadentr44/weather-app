@@ -2,7 +2,7 @@ updateList()
 
 //function to get geo location
 $('#searchBtn').on('click',function(){
-  updateList($('#input').val())
+  
   let geoSearchAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${$('#input').val()}&limit=1&appid=9f866a68e0422889c1291ae7065748b3`
 let lat;
 let lon;
@@ -20,6 +20,8 @@ fetch(geoSearchAPI)
   .then(data=>{
     console.log(data)
     displayInfo(data)
+    updateList($('#input').val())
+    $('#input').val("")
   }).catch(function(error){
     alert("invalid input")
   })
@@ -41,6 +43,7 @@ function displayInfo(data){
 
   let fiveDay = [data.daily[1],data.daily[2],data.daily[3],data.daily[4],data.daily[5]]
   console.log(fiveDay)
+  $('.card-deck').html("")
   fiveDay.forEach(e=>{
     let card = $('<div>')
     card.addClass('card col-2')
@@ -71,7 +74,7 @@ function updateList(search){
     weatherHistory = []
   }
   
-  if(search != null){
+  if(search != null && !(weatherHistory.includes(search))){
     weatherHistory.push(search)
   }
   console.log("wd", weatherHistory)
