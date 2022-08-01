@@ -39,7 +39,7 @@ function displayInfo(data){
   $('#wind').text(`wind:${data.current.wind_speed}`)
   $('#humidity').text(`humidity${data.current.humidity}`)
 
-  let fiveDay = [data.daily[0],data.daily[1],data.daily[2],data.daily[3],data.daily[4]]
+  let fiveDay = [data.daily[1],data.daily[2],data.daily[3],data.daily[4],data.daily[5]]
   console.log(fiveDay)
   fiveDay.forEach(e=>{
     let card = $('<div>')
@@ -48,6 +48,14 @@ function displayInfo(data){
     let cardBody = $('<div>')
     cardBody.addClass('card-body')
 
+    let date = new Date(e.dt*1000)
+    let cardContent = `<p>${date.getMonth()}/${date.getDate()}</p>
+    <img src="http://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="weather image">
+    <p>temp:${e.temp.day}</p>
+    <p>wind:${e.wind_speed}</p>
+    <p>humidity:${e.humidity}</p>`
+
+    cardBody.html(cardContent)
     card.append(cardBody)
     $('.card-deck').append(card)
   })
