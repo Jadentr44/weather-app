@@ -71,7 +71,7 @@ function displayInfo(data){
     //giving the card a date and the weather
     let date = new Date(e.dt*1000)
     let cardContent = `<p>${date.getMonth()}/${date.getDate()}</p>
-    <img src="http://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="weather image">
+    <img src="https://openweathermap.org/img/wn/${e.weather[0].icon}@2x.png" alt="weather image">
     <p>temp:${e.temp.day}</p>
     <p>wind:${e.wind_speed}</p>
     <p>humidity:${e.humidity}</p>`
