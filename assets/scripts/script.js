@@ -1,8 +1,8 @@
-
+updateList()
 
 //function to get geo location
 $('#searchBtn').on('click',function(){
-
+  updateList($('#input').val())
   let geoSearchAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${$('#input').val()}&limit=1&appid=9f866a68e0422889c1291ae7065748b3`
 let lat;
 let lon;
@@ -21,10 +21,10 @@ fetch(geoSearchAPI)
     console.log(data)
     displayInfo(data)
   }).catch(function(error){
-    console.log(error)
+    alert("invalid input")
   })
 }).catch(function() {
-  console.log("error");
+  alert("invalid input");
 });
 
 })
@@ -59,4 +59,29 @@ function displayInfo(data){
     card.append(cardBody)
     $('.card-deck').append(card)
   })
+}
+
+
+
+function updateList(search){
+  console.log(search)
+  $('.list-group').text("")
+  let weatherHistory = JSON.parse(localStorage.getItem("weatherH"))
+  if(weatherHistory == null){
+    weatherHistory = []
+  }
+  
+  if(search != null){
+    weatherHistory.push(search)
+  }
+  console.log("wd", weatherHistory)
+  weatherHistory.forEach(e=>{
+    let listContainer = $('<li>')
+    listContainer.addClass("list-group-item")
+    listContainer.text(e)
+
+    $('.list-group').append(listContainer)
+  })
+  localStorage.setItem("weatherH",JSON.stringify(weatherHistory))
+
 }
