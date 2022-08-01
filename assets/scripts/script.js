@@ -4,7 +4,7 @@ updateList()
 //function to get geo location
 $('#searchBtn').on('click',function(){
   //the url that will be pulled based of the users search
-  let geoSearchAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${$('#input').val()}&limit=1&appid=9f866a68e0422889c1291ae7065748b3`
+  let geoSearchAPI = `https://api.openweathermap.org/geo/1.0/direct?q=${$('#input').val()}&limit=1&appid=9f866a68e0422889c1291ae7065748b3`
   //setting varables for searching the weather
 let lat;
 let lon;
